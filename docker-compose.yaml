@@ -1,11 +1,12 @@
 version: "3.7"
 services:
 
-  books_db:
-    ?
-
-  books_cache:
-    ?
-
-volumes:
-  ?
+  postgres-books:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: actix
+      POSTGRES_USER: actix
+      POSTGRES_DB: actix
+    ports:
+      - 5432:5432
