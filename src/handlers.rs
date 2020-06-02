@@ -1,5 +1,8 @@
 use actix_web::{get, web, App, HttpServer, Responder, HttpResponse};
 use crate::book_model::{Status, Book};
+use deadpool_postgres::{Pool, Client};
+use crate::db;
+use serde::{Serialize};
 
 #[get("/{id}/{name}/index.html")]
 pub async fn index(info: web::Path<(u32, String)>) -> impl Responder {
@@ -12,8 +15,22 @@ pub async fn about() -> impl Responder {
 }
 
 #[get("/books")]
-pub async fn books() -> impl Responder {
-    format!("Hello from the books!")
+pub async fn books(db_pool: web::Data<Pool>)
+    -> impl Responder {
+
+    let client: Client = db_pool.get()
+            .await.expect("Error connectiong to DB");
+    let result = db::get_books(&client).await;
+
+    match result {
+        Ok(books) => {
+            HttpResponse::Ok().json(books)
+        },
+        Err(_) => {
+            println!("{:?}",_);
+            HttpResponse::InternalServerError().into()
+        }
+    }
 }
 
 #[get("/books/{id}")]

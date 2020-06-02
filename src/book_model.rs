@@ -6,7 +6,7 @@ pub struct Status {
     pub status: String
 }
 
-#[derive(Serialize, Deserialize, Debug, PostgresMapper)]
+#[derive(Serialize, Deserialize, PostgresMapper)]
 #[pg_mapper(table="book")]
 pub struct Book {
     pub id: i32,
@@ -15,7 +15,7 @@ pub struct Book {
     pub chapters_count: i32
 }
 
-#[derive(Serialize, Deserialize, Debug, PostgresMapper)]
+#[derive(Serialize, Deserialize, PostgresMapper)]
 #[pg_mapper(table="author")]
 pub struct Author {
     pub id: i32,

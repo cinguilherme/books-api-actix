@@ -10,7 +10,10 @@ use tokio_postgres::NoTls;
 mod my_config;
 mod book_model;
 mod handlers;
+mod db;
+
 use handlers::*;
+
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
