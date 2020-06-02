@@ -7,7 +7,7 @@ pub async fn get_books(client: &Client)
     -> Result<Vec<Book>, io::Error> {
 
     let statements =
-        client.prepare("select * from books").await.unwrap();
+        client.prepare("select * from book").await.unwrap();
 
     let books = client.query(&statements, &[])
         .await

@@ -26,8 +26,8 @@ pub async fn books(db_pool: web::Data<Pool>)
         Ok(books) => {
             HttpResponse::Ok().json(books)
         },
-        Err(_) => {
-            println!("{:?}",_);
+        Err(e) => {
+            println!("{:?}", e);
             HttpResponse::InternalServerError().into()
         }
     }
