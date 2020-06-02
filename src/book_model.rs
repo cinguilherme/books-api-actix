@@ -11,8 +11,8 @@ pub struct Status {
 pub struct Book {
     pub id: i32,
     pub title: String,
-    pub page_count: i32,
-    pub chapters_count: i32
+    pub pages: i32,
+    pub chapters: i32
 }
 
 #[derive(Serialize, Deserialize, PostgresMapper)]

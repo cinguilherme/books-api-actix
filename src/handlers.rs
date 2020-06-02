@@ -38,7 +38,7 @@ pub async fn book(_id: web::Path<u32>) -> impl Responder {
     let mut authors:Vec<String> = Vec::new();
     authors.push("Ivan Gomes".to_string());
     let test_book = Book { id: 1, title: "Crime and Passion".to_string(),
-        page_count: 10, chapters_count: 10 };
+        pages: 10, chapters: 10 };
 
     HttpResponse::Ok().json(test_book)
 }
