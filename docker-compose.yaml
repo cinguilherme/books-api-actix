@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+
+  books_db:
+    ?
+
+  books_cache:
+    ?
+
+volumes:
+  ?
