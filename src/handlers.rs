@@ -14,6 +14,16 @@ pub async fn about() -> impl Responder {
     HttpResponse::Ok().json(Status { status: "Ok".to_string() })
 }
 
+#[get("/authors")]
+pub async fn authors(dp_pool: web::Data<Pool>) -> impl Responder {
+    let client:Client = dp_pool.get().await.expect("unable to get connection");
+    let result = db::get_authors(&client).await;
+    match result {
+        Ok(authors) => HttpResponse::Ok().json(authors),
+        Err(_) => HttpResponse::InternalServerError().into()
+    }
+}
+
 #[get("/books")]
 pub async fn books(db_pool: web::Data<Pool>)
     -> impl Responder {
@@ -35,8 +45,7 @@ pub async fn books(db_pool: web::Data<Pool>)
 
 #[get("/books/{id}")]
 pub async fn book(_id: web::Path<u32>) -> impl Responder {
-    let mut authors:Vec<String> = Vec::new();
-    authors.push("Ivan Gomes".to_string());
+
     let test_book = Book { id: 1, title: "Crime and Passion".to_string(),
         pages: 10, chapters: 10 };
 

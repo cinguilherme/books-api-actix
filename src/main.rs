@@ -36,6 +36,7 @@ async fn main() -> std::io::Result<()> {
         .service(index)
         .service(about)
         .service(books)
+        .service(authors)
         .service(book))
         .bind(address_bind)?
         .run()

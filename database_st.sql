@@ -18,3 +18,10 @@ values ('Crime and Passion', 150, 10);
 
 insert into book (title, pages, chapters)
 values ('Functional Domain Modeling', 450, 18);
+
+insert into author (name)
+values ('Ivan Gomes');
+insert into author (name)
+values ('Sakuro Yakami');
+insert into author (name)
+values ('Tyras Nistro');
